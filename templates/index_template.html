@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Governments Tracker // {{{COUNTRY}}}</title>
+<style>
+* { box-sizing:border-box; }
+html, body { padding:0; margin:0; width:100%; height:100%; }
+.hide { display:none; }
+.fwidth { width:100%; }
+.w80c { width:80%; margin-left:10%; margin-right:10%; }
+
+.header, .menu, .search {
+    text-align:center;
+    padding:0;
+    margin:0;
+}
+
+.header > h1 {
+    font-weight:100;
+    font-size:48px;
+    letter-spacing:5px;
+    color:#000;
+    padding-bottom:10px;
+    padding-top:25px;
+    margin:0;
+    text-transform:uppercase;
+}
+
+.header > h1 > a { text-decoration:none; }
+
+.search { margin:0 0 50px 0; }
+
+.searchform > input[type="text"] {
+    width:20%;
+    border:1px #EEE solid;
+    height:38px;
+    padding:5px;
+    font-family:monospace;
+}
+
+@media (max-width: 700px) {
+    .searchform > input[type="text"] {
+        width:90%;
+    }
+}
+
+.menu {
+    margin-top:50px;
+}
+
+.menu > .entry {
+    display:inline-block;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-left:2%;
+    margin-right:2%;
+}
+
+.content-wrap { position:relative; min-height:500px; }
+
+.content-ribbon {
+    position:absolute;
+    top:0px;
+    margin-left:10%;
+    width:120px;
+    height:100%;
+    background-color:#EEE;
+    z-index:-1;
+}
+
+.content-ribbon:before {
+    height:0; width:0;
+    border-width: 20px 60px;
+    border-style: solid;
+    border-color: transparent #EEE #EEE #EEE;
+    top: -40px;
+    position:absolute;
+    content:'';
+}
+
+.content-ribbon:after {
+    height:0; width:0;
+    border-width: 20px 60px;
+    border-style: solid;
+    border-color: #EEE transparent transparent transparent;
+    bottom: -40px;
+    position:absolute;
+    content:'';
+}
+
+.content {
+    padding:20px 0px;
+    z-index:10;
+}
+
+.content > .c-entry {
+    padding:20px 10%;
+    position:relative;
+}
+
+.content > .c-entry:nth-child(odd) {
+    background-color:rgba(220, 220, 220, 0.7);
+}
+
+.content > .c-entry:nth-child(odd):before {
+    height:0; width:0;
+    border-width: 10px 60px;
+    border-style: solid;
+    border-color: #EEE transparent transparent transparent;
+    top: 0px;
+    position:absolute;
+    content:'';
+}
+
+.content > .c-entry:nth-child(odd):after {
+    height:0; width:0;
+    border-width: 10px 60px;
+    border-style: solid;
+    border-color: rgba(220, 220, 220, 0.7) transparent transparent transparent;
+    bottom: -20px;
+    position:absolute;
+    content:'';
+}
+
+.content > .c-entry.hl, .content > .c-entry:nth-child(odd).hl {
+    background-color:rgba(250, 190, 190, 0.7);
+    z-index:200;
+}
+
+.content > .c-entry.hl:nth-child(odd):after {
+    border-color: rgba(250, 190, 190, 0.7) transparent transparent transparent;
+    z-index:200;
+}
+
+.content > .c-entry.hl:nth-child(even):before {
+    height:0; width:0;
+    border-width: 10px 60px;
+    border-style: solid;
+    border-color: #e2e2e2 transparent transparent transparent;
+    top: 0px;
+    position:absolute;
+    content:'';
+}
+
+.content > .c-entry.hl:nth-child(even):after {
+    height:0; width:0;
+    border-width: 10px 60px;
+    border-style: solid;
+    border-color: rgba(250, 190, 190, 0.7) transparent transparent transparent;
+    bottom: -20px;
+    position:absolute;
+    content:'';
+}
+
+.c-entry > .date { position:absolute; padding:0 10px; width:120px;
+    text-align:center; }
+.c-entry > .date > p {
+    padding:0; margin:0;
+    padding-top:4px;
+    font-size:11px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+.c-entry > .date > p > a { text-decoration:none; }
+
+.c-entry > .data { margin-left:130px; }
+.c-entry > .data > p {
+    padding:0; margin:0;
+}
+
+a { color:inherit; }
+</style>
+    </head>
+    <body>
+        <div class="header fwidth">
+            <h1><a href="/">Governments Tracker</a> // {{{COUNTRY}}}</h1>
+        </div>
+        <div class="map fwidth">
+        </div>
+        <div class="search fwidth">
+            <div class="searchform hide">
+                <input type="text" name="searchinfo"
+                value="Search and press Enter" />
+                <div class="send"></div>
+            </div>
+        </div>
+        <div class="content-wrap fwidth">
+            <div class="content-ribbon">
+            </div>
+            <div class="content">
+                {{{CONTENT}}}
+            </div>
+        </div>
+        <div class="menu fwidth">
+            <p class="entry">About us</p>
+            <p class="entry">Manifest</p>
+            <p class="entry">Contact</p>
+        </div>
+        <script type="text/javascript">
+var searchclick = false;
+var prevhash = location.hash.substr(1);
+
+function search_e(val) {
+    var l = document.getElementsByClassName('c-entry');
+    for(var i = 0; i < l.length; ++i) {
+        if(l[i].textContent.includes(val)) {
+            if(l[i].classList.contains('hide')) {
+                l[i].classList.remove('hide');
+            }
+        } else {
+            if(!l[i].classList.contains('hide')) {
+                l[i].classList.add('hide');
+            }
+        }
+    }
+}
+
+function update_hl() {
+    var hash = location.hash.substr(1);
+    if(prevhash != "") {
+        var el =  document.getElementById(prevhash);
+        if(el) { el.classList.remove('hl'); }
+    }
+    var el =  document.getElementById(hash);
+    if(el) { el.classList.add('hl'); }
+    prevhash = hash;
+}
+
+function init() {
+    var search = document.getElementsByClassName('searchform')[0];
+    search.classList.toggle('hide');
+    search.addEventListener('click', function(e) {
+        if(!searchclick) {
+            search.getElementsByTagName('input')[0].value = "";
+            searchlick = true;
+        }
+    });
+    search.addEventListener('keypress', function(e) {
+        if(e.key == "Enter") {
+            search_e(search.getElementsByTagName('input')[0].value);
+        }
+    });
+    update_hl();
+    window.addEventListener('hashchange', update_hl);
+}
+
+init();
+        </script>
+    </body>
+</html>
