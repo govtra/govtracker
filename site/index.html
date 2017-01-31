@@ -26,14 +26,8 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
     text-transform:uppercase;
 }
 
-.search { margin:0 0 50px 0; }
-
-.searchform > input[type="text"] {
-    width:20%;
-    border:1px #EEE solid;
-    height:38px;
-    padding:5px;
-    font-family:monospace;
+@media (max-width: 700px) {
+    .header > h1 { font-size:36px; }
 }
 
 .countries {
@@ -53,7 +47,7 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
     margin-right:2%;
 }
 
-.content-wrap { position:relative; min-height:500px; }
+.menu > .entry > a { text-decoration:none; }
 
 a { color:inherit; }
 </style>
@@ -68,9 +62,10 @@ a { color:inherit; }
             </ul>
         </div>
         <div class="menu fwidth">
-            <p class="entry">About us</p>
-            <p class="entry">Manifest</p>
-            <p class="entry">Contact</p>
+            <p class="entry"><a href="#">About us</a></p>
+            <p class="entry"><a href="#">Manifest</a></p>
+            <p class="entry"><a
+            href="mailto:contact at govtracker.org">Contact</a></p>
         </div>
     </body>
 </html>

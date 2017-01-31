@@ -1,5 +1,7 @@
 #!/usr/bin/zsh
 
+git pull
+
 mkdir work
 if [ ! -d "govtracker-data" ]; then
     git clone https://github.com/govtra/govtracker-data.git
