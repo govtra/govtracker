@@ -68,15 +68,16 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
     margin-left:10%;
     width:120px;
     height:100%;
-    background-color:#F3F3F3;
-    z-index:-1;
+    background-color:rgba(100,100,100,0.3);
+    z-index:300;
 }
 
 .content-ribbon:before {
     height:0; width:0;
     border-width: 20px 60px;
     border-style: solid;
-    border-color: #f3f3f3 #f3f3f3 transparent #f3f3f3;
+    border-color: rgba(100,100,100,0.3) rgba(100,100,100,0.3) transparent
+        rgba(100,100,100,0.3);
     bottom: -40px;
     position:absolute;
     content:'';
@@ -86,7 +87,7 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
     height:0; width:0;
     border-width: 20px 60px;
     border-style: solid;
-    border-color: transparent transparent #f3f3f3 transparent;
+    border-color: transparent transparent rgba(100,100,100,0.3) transparent;
     top: -40px;
     position:absolute;
     content:'';
@@ -102,56 +103,77 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
     position:relative;
 }
 
-.content > .c-entry:nth-child(odd) {
-    background-color:rgba(230, 230, 230, 0.7);
-}
-
-.content > .c-entry:nth-child(odd):before {
+.content > .c-entry:before {
+    z-index:200;
     height:0; width:0;
     border-width: 10px 60px;
     border-style: solid;
-    border-color: transparent transparent #f3f3f3 transparent;
-    bottom: 0px;
-    position:absolute;
-    content:'';
-}
-
-.content > .c-entry:nth-child(odd):after {
-    height:0; width:0;
-    border-width: 10px 60px;
-    border-style: solid;
-    border-color: transparent transparent rgba(230, 230, 230, 0.7) transparent;
+    border-color: transparent transparent #fff transparent;
     top: -20px;
     position:absolute;
     content:'';
 }
 
-.content > .c-entry.hl, .content > .c-entry:nth-child(odd).hl {
-    background-color:rgba(250, 200, 200, 0.7);
-    z-index:200;
+.content > .c-entry:nth-child(4n) {
+    background-color:#eaeaea;
 }
 
-.content > .c-entry.hl:nth-child(odd):after {
-    border-color: transparent transparent rgba(250, 200, 200, 0.7) transparent;
-    z-index:200;
-}
-
-.content > .c-entry.hl:nth-child(even):before {
-    height:0; width:0;
-    border-width: 10px 60px;
-    border-style: solid;
+.content > .c-entry:nth-child(4n):before {
     border-color: transparent transparent #eaeaea transparent;
+}
+
+.content > .c-entry.hl:before {
+    border-color: transparent transparent #fdd transparent;
+}
+
+.content > .c-entry.hl {
+    background-color:#fdd;
+}
+
+.separator-cont {
+    position:relative;
+}
+
+.separator {
+    height:10px;
+    top:10px;
+    background-color:#999;
+    width:100%;
+    z-index:200;
+}
+
+.separator:before {
+    z-index:200;
+    margin-left:10%;
+    height:0; width:0;
+    border-width: 10px 60px;
+    border-style: solid;
+    border-color: transparent transparent #999 transparent;
+    top: -20px;
+    position:absolute;
+    content:'';
+}
+
+.separator:after {
+    z-index:200;
+    margin-left:10%;
+    height:0; width:0;
+    border-width: 10px 60px;
+    border-style: solid;
+    border-color: transparent transparent #999 transparent;
     bottom: 0px;
     position:absolute;
     content:'';
 }
 
-.content > .c-entry.hl:nth-child(even):after {
+.separator.last:after {
+    z-index:200;
+    margin-left:10%;
     height:0; width:0;
     border-width: 10px 60px;
     border-style: solid;
-    border-color: transparent transparent rgba(250, 200, 200, 0.7) transparent;
-    top: -20px;
+    border-color: #999 #999 transparent #999;
+    bottom: -10px;
     position:absolute;
     content:'';
 }
@@ -168,9 +190,11 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
 .c-entry > .date > p > a { text-decoration:none; }
 
 .c-entry > .data { margin-left:130px; }
-.c-entry > .data > p {
-    padding:0; margin:0;
+.c-entry > .data > p { padding:8px 0 0 0; margin:7px 0;
+    border-top:1px #aaa dotted;
 }
+.c-entry > .data > p:first-child { padding:0px; margin:0px; border-top:0; }
+
 
 a { color:inherit; }
 </style>
@@ -193,6 +217,7 @@ a { color:inherit; }
             </div>
             <div class="content">
                 {{{CONTENT}}}
+                <div class="separator-cont"><div class="separator last"></div></div>
             </div>
         </div>
         <div class="menu fwidth">
