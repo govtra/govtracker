@@ -1,14 +1,11 @@
 #!/usr/bin/zsh
 
-git pull
-
-mkdir work
 if [ ! -d "govtracker-data" ]; then
-    git clone https://github.com/govtra/govtracker-data.git
-else
-    cd govtracker-data; git pull origin master; cd ..
+    echo "Use git clone https://github.com/govtra/govtracker-data.git to get the data"
+    exit 1
 fi
 
+mkdir work
 for j in govtracker-data/*/; do
     j2=`basename $j`
     j2=${j2%_entries}
@@ -17,7 +14,9 @@ for j in govtracker-data/*/; do
         i2=`basename $i`
         sed -- 's/{{{DATE}}}/'"${i2%.md}"'/g' templates/entry_template.html > work/tmp
         markdown $i > work/md.html
-        sed -e '/{{{DATA}}}/ {' -e "r work/md.html" -e 'd' -e '}' work/tmp >> work/content.html
+        cp work/content.html work/backup_content.html
+        sed -e '/{{{DATA}}}/ {' -e "r work/md.html" -e 'd' -e '}' work/tmp > work/content.html
+        cat work/backup_content.html >> work/content.html
     done
     if [ ! -d "site/$j2" ]; then
         mkdir site/$j2
