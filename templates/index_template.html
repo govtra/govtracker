@@ -278,8 +278,9 @@ function init() {
     var c_entries = document.getElementsByClassName('c-entry');
     for(var i = 0; i < c_entries.length; ++i) {
         let c_entry = c_entries[i];
-        c_entry.addEventListener('click', function() {
-            location.hash = '#' + c_entry.id;
+        c_entry.addEventListener('mousedown', function() {
+            var e_date = '#' + c_entry.id;
+            if(location.hash != e_date) location.hash = e_date;
         });
     }
 }
