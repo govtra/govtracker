@@ -233,7 +233,8 @@ var prevhash = location.hash.substr(1);
 
 function search_e(val) {
     var l = document.getElementsByClassName('c-entry');
-    var valexp = new RegExp(val, "i");
+    var safeval = val.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    var valexp = new RegExp(safeval, "i");
     for(var i = 0; i < l.length; ++i) {
         var found = (l[i].textContent.search(valexp) >= 0);
         l[i].classList.toggle('hide', !found);
