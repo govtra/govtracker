@@ -235,15 +235,8 @@ function search_e(val) {
     var l = document.getElementsByClassName('c-entry');
     var valexp = new RegExp(val, "i");
     for(var i = 0; i < l.length; ++i) {
-        if(l[i].textContent.search(valexp) >= 0) {
-            if(l[i].classList.contains('hide')) {
-                l[i].classList.remove('hide');
-            }
-        } else {
-            if(!l[i].classList.contains('hide')) {
-                l[i].classList.add('hide');
-            }
-        }
+        var found = (l[i].textContent.search(valexp) >= 0);
+        l[i].classList.toggle('hide', !found);
     }
 }
 
