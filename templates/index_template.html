@@ -209,7 +209,7 @@ a { color:inherit; }
         <div class="search fwidth">
             <div class="searchform hide">
                 <input type="text" name="searchinfo"
-                value="Type and press Enter" />
+                placeholder="Type and press Enter" autocomplete="off" />
                 <div class="send"></div>
             </div>
         </div>
@@ -229,21 +229,15 @@ a { color:inherit; }
             href="mailto:contact at govtracker.org">Contact</a></p>
         </div>
         <script type="text/javascript">
-var searchclick = false;
 var prevhash = location.hash.substr(1);
 
 function search_e(val) {
     var l = document.getElementsByClassName('c-entry');
+    var safeval = val.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    var valexp = new RegExp(safeval, "i");
     for(var i = 0; i < l.length; ++i) {
-        if(l[i].textContent.includes(val)) {
-            if(l[i].classList.contains('hide')) {
-                l[i].classList.remove('hide');
-            }
-        } else {
-            if(!l[i].classList.contains('hide')) {
-                l[i].classList.add('hide');
-            }
-        }
+        var found = (l[i].textContent.search(valexp) >= 0);
+        l[i].classList.toggle('hide', !found);
     }
 }
 
@@ -260,13 +254,6 @@ function update_hl() {
 
 function init() {
     var search = document.getElementsByClassName('searchform')[0];
-    search.classList.toggle('hide');
-    search.addEventListener('click', function(e) {
-        if(!searchclick) {
-            search.getElementsByTagName('input')[0].value = "";
-            searchlick = true;
-        }
-    });
     search.addEventListener('keypress', function(e) {
         if(e.key == "Enter") {
             search_e(search.getElementsByTagName('input')[0].value);
