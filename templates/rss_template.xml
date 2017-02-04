@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+<channel>
+
+    <title>GovTracker // {{{COUNTRY}}}</title>
+    <description>List of latest political events.</description>
+    <link>https://govtracker.org/{{{COUNTRY}}}</link>
+
+    {{{CONTENT}}}
+
+</channel>
+</rss>

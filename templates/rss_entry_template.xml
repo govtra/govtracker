@@ -1,0 +1,5 @@
+<item>
+<title>Events of {{{DATE}}}</title>
+<description>{{{COUNTRY}}}: All political decisions made on the {{{DATE}}}</description>
+<link>https://govtracker.org/{{{COUNTRY}}}/#{{{DATE}}}</link>
+</item>
