@@ -10,10 +10,12 @@ for j in govtracker-data/*/; do
     j2=`basename $j`
     j2=${j2%_entries}
     j2up=`echo "$j2" | tr '[:lower:]' '[:upper:]'`
+    echo "Processing $j2up"
     echo "" > work/content.html
     echo "" > work/content.rss
     for i in $j/*; do
         i2=`basename $i`
+        echo "# $i2"
         # HTML
         sed -- 's/{{{DATE}}}/'"${i2%.md}"'/g' templates/entry_template.html > work/tmp
         markdown $i > work/md.html
@@ -40,6 +42,7 @@ for j in govtracker-data/*/; do
     # RSS
     sed -- 's/{{{COUNTRY}}}/'"$j2up"'/g' templates/rss_template.xml > work/rss.xml
     sed -e '/{{{CONTENT}}}/ {' -e "r work/content.rss" -e 'd' -e '}' work/rss.xml > site/$j2/rss.xml
+    echo "Done $j2up\n"
 done
 
 rm -r work
