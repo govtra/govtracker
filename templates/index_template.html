@@ -184,12 +184,14 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
 
 .c-entry > .date { position:absolute; padding:0 10px; width:120px;
     text-align:center; z-index:999; }
+
 .c-entry > .date > p {
     padding:0; margin:0;
     padding-top:4px;
-    font-size:11px;
-    letter-spacing:2px;
+    font-size:10px;
     font-weight:bold;
+    font-family:sans-serif;
+    cursor:pointer;
 }
 .c-entry > .date > p > a { text-decoration:none; }
 
@@ -271,9 +273,13 @@ function init() {
     var c_entries = document.getElementsByClassName('c-entry');
     for(var i = 0; i < c_entries.length; ++i) {
         let c_entry = c_entries[i];
-        c_entry.addEventListener('mousedown', function() {
-            var e_date = '#' + c_entry.id;
-            if(location.hash != e_date) location.hash = e_date;
+        c_entry.addEventListener('mouseenter', function() {
+            c_entry.classList.add('hl');
+        });
+        c_entry.addEventListener('mouseleave', function() {
+            if(c_entry.id != location.hash.substr(1)) {
+                c_entry.classList.remove('hl');
+            }
         });
     }
 }
