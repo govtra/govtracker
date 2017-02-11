@@ -36,7 +36,7 @@ for j in govtracker-data/*/; do
         mkdir site/$j2
     fi
     # HTML
-    sed -- 's/\(<a href=".*"\)\(>\)/\1 target="_blank" \2/' work/content.html > work/content2.html
+    sed -- 's/\(href="[^ ]*"\)/\1 target="_blank"/' work/content.html > work/content2.html
     sed -- 's/{{{COUNTRY}}}/'"$j2up"'/g' templates/index_template.html > work/index2.html
     sed -- 's/{{{COUNTRY_S}}}/'"$j2"'/g' work/index2.html > work/index.html
     sed -e '/{{{CONTENT}}}/ {' -e "r work/content2.html" -e 'd' -e '}' work/index.html > site/$j2/index.html
