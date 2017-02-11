@@ -1,5 +1,7 @@
 <item>
 <title>Events of {{{DATE}}}</title>
-<description>{{{DESCR}}}...</description>
+<description><![CDATA[
+    {{{DESCR}}}
+    ]]></description>
 <link>https://govtracker.org/{{{COUNTRY_S}}}/#{{{DATE}}}</link>
 </item>

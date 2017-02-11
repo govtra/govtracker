@@ -24,10 +24,11 @@ for j in govtracker-data/*/; do
         cat work/backup_content.html >> work/content.html
 
         # RSS
-        descr=`pandoc -f markdown -t plain $i | tr -d '\n'| cut -c-50`
+        # descr=`pandoc -f markdown -t plain $i | tr -d '\n'| cut -c-50`
         cp work/content.rss work/backup_content.rss
         sed -- 's/{{{DATE}}}/'"${i2%.md}"'/g' templates/rss_entry_template.xml > work/rss_tmp
-        sed -- 's/{{{DESCR}}}/'"$descr"'/g' work/rss_tmp > work/content2.rss
+        #sed -- 's/{{{DESCR}}}/'"$descr"'/g' work/rss_tmp > work/content2.rss
+        sed -e '/{{{DESCR}}}/ {' -e "r work/md.html" -e 'd' -e '}' work/rss_tmp > work/content2.rss
         sed -- 's/{{{COUNTRY_S}}}/'"$j2"'/g' work/content2.rss > work/content.rss
         cat work/backup_content.rss >> work/content.rss
     done
