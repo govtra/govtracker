@@ -9,9 +9,11 @@
 <style>
 * { box-sizing:border-box; }
 html, body { padding:0; margin:0; width:100%; height:100%; }
+p { font-family:sans-serif; }
 .hide { display:none; }
 .fwidth { width:100%; }
 .w80c { width:80%; margin-left:10%; margin-right:10%; }
+.w95c { width:95%; margin-left:2.5%; margin-right:2.5%; }
 
 .header, .menu, .search {
     text-align:center;
@@ -68,10 +70,10 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
 .content-ribbon {
     position:absolute;
     top:0px;
-    margin-left:10%;
+    margin-left:2.5%;
     width:120px;
     height:100%;
-    background-color:rgba(120,120,120,0.3);
+    background-color:rgba(47,82,140,0.1);
     z-index:300;
 }
 
@@ -79,8 +81,8 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
     height:0; width:0;
     border-width: 20px 60px;
     border-style: solid;
-    border-color: rgba(120,120,120,0.3) rgba(120,120,120,0.3) transparent
-        rgba(120,120,120,0.3);
+    border-color: rgba(47,82,140,0.1) rgba(47,82,140,0.1) transparent
+        rgba(47,82,140,0.1);
     bottom: -40px;
     position:absolute;
     content:'';
@@ -90,7 +92,7 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
     height:0; width:0;
     border-width: 20px 60px;
     border-style: solid;
-    border-color: transparent transparent rgba(120,120,120,0.3) transparent;
+    border-color: transparent transparent rgba(47,82,140,0.1) transparent;
     top: -40px;
     position:absolute;
     content:'';
@@ -102,7 +104,7 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
 }
 
 .content > .c-entry {
-    padding:20px 10%;
+    padding:20px 2.5%;
     position:relative;
     background:#eee;
 }
@@ -127,11 +129,11 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
 }
 
 .content > .c-entry.hl:before {
-    border-color: transparent transparent #ffe1ce transparent;
+    border-color: transparent transparent rgba(47, 82, 140, 0.2) transparent;
 }
 
 .content > .c-entry.hl {
-    background-color:#ffe1ce;
+    background-color:rgba(47, 82, 140, 0.2);
 }
 
 .separator-cont {
@@ -148,7 +150,7 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
 
 .separator:before {
     z-index:200;
-    margin-left:10%;
+    margin-left:2.5%;
     height:0; width:0;
     border-width: 10px 60px;
     border-style: solid;
@@ -197,12 +199,12 @@ html, body { padding:0; margin:0; width:100%; height:100%; }
 
 .c-entry > .data { margin-left:130px; }
 .c-entry > .data > p { padding:8px 0 0 0; margin:7px 0;
-    border-top:1px #aaa dotted;
+    border-top:1px #aaa dotted; font-size:10px;
 }
 .c-entry > .data > p:first-child { padding:0px; margin:0px; border-top:0; }
 
 
-a { color:inherit; }
+a { color:#2f528c; }
 </style>
     </head>
     <body>
