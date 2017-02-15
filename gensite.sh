@@ -19,8 +19,9 @@ for j in govtracker-data/*/; do
         # HTML
         sed -- 's/{{{DATE}}}/'"${i2%.md}"'/g' templates/entry_template.html > work/tmp
         markdown $i > work/md.html
+        sed -- 's/\(href="[^ >]*"\)/\1 target="_blank"/' work/md.html > work/md2.html
         cp work/content.html work/backup_content.html
-        sed -e '/{{{DATA}}}/ {' -e "r work/md.html" -e 'd' -e '}' work/tmp > work/content.html
+        sed -e '/{{{DATA}}}/ {' -e "r work/md2.html" -e 'd' -e '}' work/tmp > work/content.html
         cat work/backup_content.html >> work/content.html
 
         # RSS
@@ -36,10 +37,9 @@ for j in govtracker-data/*/; do
         mkdir site/$j2
     fi
     # HTML
-    sed -- 's/\(href="[^ >]*"\)/\1 target="_blank"/' work/content.html > work/content2.html
     sed -- 's/{{{COUNTRY}}}/'"$j2up"'/g' templates/index_template.html > work/index2.html
     sed -- 's/{{{COUNTRY_S}}}/'"$j2"'/g' work/index2.html > work/index.html
-    sed -e '/{{{CONTENT}}}/ {' -e "r work/content2.html" -e 'd' -e '}' work/index.html > site/$j2/index.html
+    sed -e '/{{{CONTENT}}}/ {' -e "r work/content.html" -e 'd' -e '}' work/index.html > site/$j2/index.html
 
     # RSS
     sed -- 's/{{{COUNTRY}}}/'"$j2up"'/g' templates/rss_template.xml > work/rss.xml
