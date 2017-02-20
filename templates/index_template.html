@@ -2,19 +2,14 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>Governments Tracker // {{{COUNTRY}}}</title>
-        <link href="https://govtracker.org/{{{COUNTRY_S}}}/rss.xml"
-            rel="alternate" type="application/rss+xml"
-            title="GovTracker // {{{COUNTRY}}}"/>
+        <title>Governments Tracker</title>
 <style>
 * { box-sizing:border-box; }
 html, body { padding:0; margin:0; width:100%; height:100%; }
-body { font-size:100%; }
 p { font-family:sans-serif; }
-.hide { display:none; }
 .fwidth { width:100%; }
 .w80c { width:80%; margin-left:10%; margin-right:10%; }
-.w95c { width:95%; margin-left:2.5%; margin-right:2.5%; }
+.w60c { width:60%; margin-left:20%; margin-right:20%; }
 
 .header, .menu, .search {
     text-align:center;
@@ -33,23 +28,18 @@ p { font-family:sans-serif; }
     text-transform:uppercase;
 }
 
-.header > h1 > a { text-decoration:none; }
-
-.search { margin:0 0 50px 0; }
-
-.searchform > input[type="text"] {
-    width:20%;
-    border:1px rgba(100,100,100,0.3) solid;
-    height:38px;
-    padding:5px;
-    font-family:monospace;
-}
-
 @media (max-width: 700px) {
     .header > h1 { font-size:2em; }
-    .searchform > input[type="text"] {
-        width:90%;
-    }
+    .w60c { width:90%; margin-left:5%; margin-right:5%; }
+}
+
+.countries {
+    min-height:500px;
+    margin:0 10%;
+}
+
+.c_sub {
+    list-style-type:none;
 }
 
 .menu {
@@ -66,168 +56,29 @@ p { font-family:sans-serif; }
 
 .menu > .entry > a { text-decoration:none; }
 
-.content-wrap { position:relative; min-height:500px; }
-
-.content-ribbon {
-    position:absolute;
-    top:0px;
-    margin-left:2.5%;
-    width:120px;
-    height:100%;
-    background-color:rgba(47,82,140,0.1);
-    z-index:300;
-}
-
-.content-ribbon:before {
-    height:0; width:0;
-    border-width: 20px 60px;
-    border-style: solid;
-    border-color: rgba(47,82,140,0.1) rgba(47,82,140,0.1) transparent
-        rgba(47,82,140,0.1);
-    bottom: -40px;
-    position:absolute;
-    content:'';
-}
-
-.content-ribbon:after {
-    height:0; width:0;
-    border-width: 20px 60px;
-    border-style: solid;
-    border-color: transparent transparent rgba(47,82,140,0.1) transparent;
-    top: -40px;
-    position:absolute;
-    content:'';
-}
-
-.content {
-    padding:20px 0px;
-    z-index:10;
-}
-
-.content > .c-entry {
-    padding:20px 2.5%;
-    position:relative;
-    background:#eee;
-}
-
-.content > .c-entry:before {
-    z-index:200;
-    height:0; width:0;
-    border-width: 10px 60px;
-    border-style: solid;
-    border-color: transparent transparent #eee transparent;
-    top: -20px;
-    position:absolute;
-    content:'';
-}
-
-.content > .c-entry:nth-child(4n) {
-    background-color:#f7f7f7;
-}
-
-.content > .c-entry:nth-child(4n):before {
-    border-color: transparent transparent #f7f7f7 transparent;
-}
-
-.content > .c-entry.hl:before {
-    border-color: transparent transparent rgba(47, 82, 140, 0.2) transparent;
-}
-
-.content > .c-entry.hl {
-    background-color:rgba(47, 82, 140, 0.2);
-}
-
-.separator-cont {
-    position:relative;
-}
-
-.separator {
-    height:10px;
-    top:10px;
-    background-color:#fff;
-    width:100%;
-    z-index:200;
-}
-
-.separator:before {
-    z-index:200;
-    margin-left:2.5%;
-    height:0; width:0;
-    border-width: 10px 60px;
-    border-style: solid;
-    border-color: transparent transparent #fff transparent;
-    top: -20px;
-    position:absolute;
-    content:'';
-}
-
-.separator:after {
-    z-index:200;
-    margin-left:10%;
-    height:0; width:0;
-    border-width: 10px 60px;
-    border-style: solid;
-    border-color: transparent transparent #fff transparent;
-    bottom: 0px;
-    position:absolute;
-    content:'';
-}
-
-.separator.last:after {
-    z-index:200;
-    margin-left:10%;
-    height:0; width:0;
-    border-width: 10px 60px;
-    border-style: solid;
-    border-color: #fff #fff transparent #fff;
-    bottom: -10px;
-    position:absolute;
-    content:'';
-}
-
-.c-entry > .date { position:absolute; padding:0 10px; width:120px;
-    text-align:center; z-index:999; }
-
-.c-entry > .date > p {
-    padding:0; margin:0;
-    padding-top:4px;
-    font-weight:bold;
-    font-family:sans-serif;
-    font-size:0.7em;
-    cursor:pointer;
-}
-.c-entry > .date > p > a { text-decoration:none; }
-
-.c-entry > .data { margin-left:130px; }
-.c-entry > .data > p { padding:8px 0 0 0; margin:7px 0;
-    border-top:1px #aaa dotted;
-}
-.c-entry > .data > p:first-child { padding:0px; margin:0px; border-top:0; }
-
-
 a { color:#2f528c; }
+.center { text-align:center; }
+.important { max-height:300px; margin-bottom:10px; overflow-y:auto; }
+.important > p { display:inline-block; }
+.important > .date { margin:0 10px; font-weight:bold; color:#900; }
 </style>
     </head>
     <body>
         <div class="header fwidth">
-            <h1><a href="/">Governments Tracker</a> // {{{COUNTRY}}}</h1>
+            <h1>Governments Tracker</h1>
+        </div>
+        <div class="important w60c">
+            {{{CONTENT}}}
         </div>
         <div class="map fwidth">
-        </div>
-        <div class="search fwidth">
-            <div class="searchform hide">
-                <input type="text" name="searchinfo"
-                placeholder="Type and press Enter" autocomplete="off" />
-                <div class="send"></div>
-            </div>
-        </div>
-        <div class="content-wrap fwidth">
-            <div class="content-ribbon">
-            </div>
-            <div class="content">
-                {{{CONTENT}}}
-                <div class="separator-cont"><div class="separator last"></div></div>
-            </div>
+            <ul class="countries">
+                <li><a href="eu/">European Union</a>
+                    <ul class="c_sub">
+                        <li><a href="fr/">France</a></li>
+                    </ul>
+                </li>
+                <li><a href="us/">United States of America</a></li>
+            </ul>
         </div>
         <div class="menu fwidth">
             <p class="entry"><a
@@ -235,59 +86,6 @@ a { color:#2f528c; }
             <!-- <p class="entry"><a href="#">Manifest</a></p> -->
             <p class="entry"><a
             href="mailto:contact at govtracker.org">Contact</a></p>
-            <p class="entry"><a
-               href="https://govtracker.org/{{{COUNTRY_S}}}/rss.xml">Subscribe</a></p>
         </div>
-        <script type="text/javascript">
-var prevhash = location.hash.substr(1);
-
-function search_e(val) {
-    var l = document.getElementsByClassName('c-entry');
-    var safeval = val.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-    var valexp = new RegExp(safeval, "i");
-    for(var i = 0; i < l.length; ++i) {
-        var found = (l[i].textContent.search(valexp) >= 0);
-        l[i].classList.toggle('hide', !found);
-    }
-}
-
-function update_hl() {
-    var hash = location.hash.substr(1);
-    if(prevhash != "") {
-        var el =  document.getElementById(prevhash);
-        if(el) { el.classList.remove('hl'); }
-    }
-    var el =  document.getElementById(hash);
-    if(el) { el.classList.add('hl'); }
-    prevhash = hash;
-}
-
-function init() {
-    var search = document.getElementsByClassName('searchform')[0];
-    search.classList.toggle('hide');
-    search.addEventListener('keypress', function(e) {
-        if(e.key == "Enter") {
-            search_e(search.getElementsByTagName('input')[0].value);
-        }
-    });
-    update_hl();
-    window.addEventListener('hashchange', update_hl);
-    
-    var c_entries = document.getElementsByClassName('c-entry');
-    for(var i = 0; i < c_entries.length; ++i) {
-        let c_entry = c_entries[i];
-        c_entry.addEventListener('mouseenter', function() {
-            c_entry.classList.add('hl');
-        });
-        c_entry.addEventListener('mouseleave', function() {
-            if(c_entry.id != location.hash.substr(1)) {
-                c_entry.classList.remove('hl');
-            }
-        });
-    }
-}
-
-init();
-        </script>
     </body>
 </html>
